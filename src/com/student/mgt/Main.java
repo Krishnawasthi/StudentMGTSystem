@@ -1,4 +1,4 @@
-﻿package com.student.mgt;
+package com.student.mgt;
 
 import com.student.mgt.config.AppConfig;
 import com.student.mgt.model.Course;

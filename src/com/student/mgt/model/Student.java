@@ -1,4 +1,4 @@
-﻿package com.student.mgt.model;
+package com.student.mgt.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

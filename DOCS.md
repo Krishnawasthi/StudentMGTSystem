@@ -1,4 +1,4 @@
-﻿# Core Java Student Management System Architecture
+# Core Java Student Management System Architecture
 
 ## Design Patterns & Core Java Principles Applied
 

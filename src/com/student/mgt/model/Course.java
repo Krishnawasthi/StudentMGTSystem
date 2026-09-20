@@ -1,4 +1,4 @@
-﻿package com.student.mgt.model;
+package com.student.mgt.model;
 
 public enum Course {
     COMPUTER_SCIENCE("CS", "Computer Science"),

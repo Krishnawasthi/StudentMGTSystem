@@ -1,4 +1,4 @@
-﻿package com.student.mgt.config;
+package com.student.mgt.config;
 
 public class AppConfig {
     public static final String DATA_FILE_PATH = "students_data.txt";

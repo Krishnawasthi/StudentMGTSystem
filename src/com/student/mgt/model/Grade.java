@@ -1,4 +1,4 @@
-﻿package com.student.mgt.model;
+package com.student.mgt.model;
 
 public enum Grade {
     A_PLUS("A+", 4.0, 90, 100),

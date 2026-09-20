@@ -1,4 +1,4 @@
-﻿package com.student.mgt.util;
+package com.student.mgt.util;
 
 import com.student.mgt.model.Grade;
 import com.student.mgt.model.Student;

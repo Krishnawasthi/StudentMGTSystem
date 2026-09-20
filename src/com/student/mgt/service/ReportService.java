@@ -1,4 +1,4 @@
-﻿package com.student.mgt.service;
+package com.student.mgt.service;
 
 import com.student.mgt.model.Student;
 import com.student.mgt.repository.StudentRepository;

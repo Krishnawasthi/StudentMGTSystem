@@ -1,4 +1,4 @@
-﻿package com.student.mgt.repository;
+package com.student.mgt.repository;
 
 import com.student.mgt.model.Student;
 import java.util.List;

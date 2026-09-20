@@ -1,4 +1,4 @@
-﻿package com.student.mgt.exception;
+package com.student.mgt.exception;
 
 public class InvalidDataException extends RuntimeException {
     public InvalidDataException(String message) {

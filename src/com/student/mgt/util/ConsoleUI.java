@@ -1,4 +1,4 @@
-﻿package com.student.mgt.util;
+package com.student.mgt.util;
 
 import com.student.mgt.model.Course;
 import com.student.mgt.model.Student;
@@ -84,7 +84,7 @@ public class ConsoleUI {
             System.out.println("No students registered.");
             return;
         }
-        students.forEach(System::println);
+        students.forEach(System.out::println);
     }
 
     private void addMarks() {
