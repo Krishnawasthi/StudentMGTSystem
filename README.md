@@ -1,0 +1,22 @@
+# Student Management System (Core Java)
+
+A standalone, object-oriented **Core Java** application for managing student records, attendance, grades, and academic reports.
+
+## System Features
+- Core Java Object-Oriented Architecture (Encapsulation, Inheritance, Polymorphism, Abstraction)
+- File-based Data Persistence (Java I/O & Collections API)
+- Student Registration, Search, Edit, and Deletion
+- Grade & GPA Calculation Utilities
+- Attendance Tracking System
+- Export Data to CSV
+- Interactive Console UI
+
+## Prerequisites
+- JDK 8 or higher (Tested with JDK 22)
+
+## How to Run
+Compile and run using the included `run.bat` script or manually via command line:
+```bash
+javac -d bin src/com/student/mgt/**/*.java
+java -cp bin com.student.mgt.Main
+```
