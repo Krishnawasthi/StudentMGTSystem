@@ -25,4 +25,19 @@ public class AttendanceService {
     public boolean isEligibleForExam(Student student) {
         return student.getAttendancePercentage() >= 75.0;
     }
+
+    public void recordBatchAttendance(java.util.List<String> studentIds, double percentage) {
+        if (studentIds == null || studentIds.isEmpty()) return;
+        for (String id : studentIds) {
+            try {
+                updateAttendance(id, percentage);
+            } catch (StudentNotFoundException ignored) {}
+        }
+    }
+
+    public java.util.List<Student> getLowAttendanceStudents(double threshold) {
+        return repository.findAll().stream()
+                .filter(s -> s.getAttendancePercentage() < threshold)
+                .collect(java.util.stream.Collectors.toList());
+    }
 }
