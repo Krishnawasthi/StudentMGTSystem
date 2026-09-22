@@ -59,6 +59,32 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> searchByName(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return getAllStudents();
+        }
+        String term = keyword.trim().toLowerCase();
+        return repository.findAll().stream()
+                .filter(s -> s.getName().toLowerCase().contains(term))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Student> filterByGpaRange(double minGpa, double maxGpa) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGpa() >= minGpa && s.getGpa() <= maxGpa)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Student> getTopPerformers(int limit) {
+        return repository.findAll().stream()
+                .sorted((s1, s2) -> Double.compare(s2.getGpa(), s1.getGpa()))
+                .limit(limit > 0 ? limit : 5)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void addMarks(String studentId, double marks) throws StudentNotFoundException {
         ValidationUtil.validateMarks(marks);
         Student student = getStudentById(studentId);

@@ -13,6 +13,9 @@ public interface StudentService {
     Student getStudentByRollNo(String rollNo) throws StudentNotFoundException;
     List<Student> getAllStudents();
     List<Student> getStudentsByCourse(Course course);
+    List<Student> searchByName(String keyword);
+    List<Student> filterByGpaRange(double minGpa, double maxGpa);
+    List<Student> getTopPerformers(int limit);
     void addMarks(String studentId, double marks) throws StudentNotFoundException;
     void deleteStudent(String id) throws StudentNotFoundException;
 }
