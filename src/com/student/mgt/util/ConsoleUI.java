@@ -36,7 +36,10 @@ public class ConsoleUI {
                 case "4": updateAttendance(); break;
                 case "5": reportService.printClassSummaryReport(); break;
                 case "6": exportCsv(); break;
-                case "7": deleteStudent(); break;
+                case "7": exportJson(); break;
+                case "8": searchStudents(); break;
+                case "9": viewTopPerformers(); break;
+                case "10": deleteStudent(); break;
                 case "0":
                     running = false;
                     System.out.println("Exiting application. Goodbye!");
@@ -55,7 +58,10 @@ public class ConsoleUI {
         System.out.println("4. Update Attendance");
         System.out.println("5. Print Class Summary Report");
         System.out.println("6. Export Students to CSV");
-        System.out.println("7. Delete Student");
+        System.out.println("7. Export Students to JSON");
+        System.out.println("8. Search Students by Name");
+        System.out.println("9. View Top Performers");
+        System.out.println("10. Delete Student");
         System.out.println("0. Exit");
     }
 
@@ -122,6 +128,38 @@ public class ConsoleUI {
         } catch (Exception e) {
             System.out.println("Export failed: " + e.getMessage());
         }
+    }
+
+    private void exportJson() {
+        try {
+            DataExportUtil.exportToJsonFile(studentService.getAllStudents(), "students_export.json");
+            System.out.println("Successfully exported data to students_export.json");
+        } catch (Exception e) {
+            System.out.println("JSON Export failed: " + e.getMessage());
+        }
+    }
+
+    private void searchStudents() {
+        System.out.print("Enter search keyword (name): ");
+        String term = scanner.nextLine();
+        List<Student> results = studentService.searchByName(term);
+        if (results.isEmpty()) {
+            System.out.println("No matching students found.");
+        } else {
+            System.out.println("Matching Students:");
+            results.forEach(System.out::println);
+        }
+    }
+
+    private void viewTopPerformers() {
+        System.out.print("Enter limit (e.g. 5): ");
+        int limit = 5;
+        try {
+            limit = Integer.parseInt(scanner.nextLine().trim());
+        } catch (Exception ignored) {}
+        List<Student> top = studentService.getTopPerformers(limit);
+        System.out.println("Top Performers:");
+        top.forEach(s -> System.out.printf("%s - GPA: %.2f%n", s.getName(), s.getGpa()));
     }
 
     private void deleteStudent() {
