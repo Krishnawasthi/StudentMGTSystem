@@ -9,10 +9,15 @@
 
 ### 2. Repository Pattern
 - Decouples data storage layer from business domain logic.
-- \FileStudentRepository\ manages custom file serialization/deserialization.
+- `FileStudentRepository` manages file serialization and storage.
+- `InMemoryStudentRepository` enables lightweight in-memory caching for isolated unit tests.
 
 ### 3. Custom Exception Hierarchy
-- \StudentNotFoundException\, \DuplicateStudentException\, and \InvalidDataException\ handle operational and validation failures gracefully.
+- `StudentNotFoundException`, `DuplicateStudentException`, `InvalidDataException`, `InvalidGradeException`, and `StorageException` handle operational, validation, and persistence failures gracefully.
 
-### 4. Java Collections API & Streams
-- Utilizes \Map<String, Student>\, \List<Student>\, and \Stream API\ for efficient searching, filtering, and aggregation.
+### 4. Data Export & Logging Infrastructure
+- `DataExportUtil` supports CSV and JSON serialization.
+- `AppLogger` records timestamped log entries (`INFO`, `WARN`, `ERROR`) to `student_mgt.log`.
+
+### 5. Java Collections API & Streams
+- Utilizes `Map<String, Student>`, `List<Student>`, and Java `Stream API` for searching by name, filtering by GPA range, and retrieving top performers.
