@@ -1,5 +1,6 @@
 package com.student.mgt.model;
 
+import com.student.mgt.util.GradeCalculatorUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,14 @@ public class Student implements Serializable {
         double sum = 0;
         for (double m : marks) sum += m;
         return sum / marks.size();
+    }
+
+    public double getGpa() {
+        return GradeCalculatorUtil.calculateGPA(this);
+    }
+
+    public Grade getOverallGrade() {
+        return GradeCalculatorUtil.calculateGrade(this);
     }
 
     @Override

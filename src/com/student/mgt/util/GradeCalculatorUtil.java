@@ -23,4 +23,12 @@ public class GradeCalculatorUtil {
         }
         return totalGpa / marks.size();
     }
+
+    public static String formatGpaDisplay(double gpa) {
+        return String.format("%.2f / 4.00", gpa);
+    }
+
+    public static boolean isHonorsStudent(Student student) {
+        return calculateGPA(student) >= 3.5;
+    }
 }
