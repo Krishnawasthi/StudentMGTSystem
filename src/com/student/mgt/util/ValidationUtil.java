@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class ValidationUtil {
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
+    private static final Pattern PHONE_PATTERN = Pattern.compile("^\\+?[0-9]{7,15}$");
 
     public static void validateRollNo(String rollNo) {
         if (rollNo == null || rollNo.trim().isEmpty()) {
@@ -22,6 +23,18 @@ public class ValidationUtil {
     public static void validateEmail(String email) {
         if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
             throw new InvalidDataException("Invalid email format.");
+        }
+    }
+
+    public static void validatePhone(String phone) {
+        if (phone != null && !phone.trim().isEmpty() && !PHONE_PATTERN.matcher(phone.trim()).matches()) {
+            throw new InvalidDataException("Invalid phone number format. Should contain 7-15 digits.");
+        }
+    }
+
+    public static void validateAge(int age) {
+        if (age < 15 || age > 100) {
+            throw new InvalidDataException("Age must be between 15 and 100.");
         }
     }
 
