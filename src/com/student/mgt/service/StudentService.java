@@ -16,6 +16,8 @@ public interface StudentService {
     List<Student> searchByName(String keyword);
     List<Student> filterByGpaRange(double minGpa, double maxGpa);
     List<Student> getTopPerformers(int limit);
+    void updateStudentStatus(String id, com.student.mgt.model.StudentStatus status) throws StudentNotFoundException;
+    List<Student> getStudentsByStatus(com.student.mgt.model.StudentStatus status);
     void addMarks(String studentId, double marks) throws StudentNotFoundException;
     void deleteStudent(String id) throws StudentNotFoundException;
 }

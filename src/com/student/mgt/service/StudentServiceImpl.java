@@ -85,6 +85,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void updateStudentStatus(String id, com.student.mgt.model.StudentStatus status) throws StudentNotFoundException {
+        Student student = getStudentById(id);
+        student.setStatus(status);
+        repository.update(student);
+    }
+
+    @Override
+    public List<Student> getStudentsByStatus(com.student.mgt.model.StudentStatus status) {
+        return repository.findAll().stream()
+                .filter(s -> s.getStatus() == status)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void addMarks(String studentId, double marks) throws StudentNotFoundException {
         ValidationUtil.validateMarks(marks);
         Student student = getStudentById(studentId);
