@@ -17,6 +17,7 @@ public class Student implements Serializable {
     private List<Double> marks;
     private double attendancePercentage;
     private StudentStatus status;
+    private Semester semester;
 
     public Student(String studentId, String rollNo, String name, String email, Course course) {
         this.studentId = studentId;
@@ -27,10 +28,14 @@ public class Student implements Serializable {
         this.marks = new ArrayList<>();
         this.attendancePercentage = 100.0;
         this.status = StudentStatus.ACTIVE;
+        this.semester = Semester.SEMESTER_1;
     }
 
     public StudentStatus getStatus() { return status != null ? status : StudentStatus.ACTIVE; }
     public void setStatus(StudentStatus status) { this.status = status; }
+
+    public Semester getSemester() { return semester != null ? semester : Semester.SEMESTER_1; }
+    public void setSemester(Semester semester) { this.semester = semester; }
 
     public String getStudentId() { return studentId; }
     public void setStudentId(String studentId) { this.studentId = studentId; }
