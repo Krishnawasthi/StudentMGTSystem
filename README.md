@@ -5,12 +5,15 @@ A standalone, object-oriented **Core Java** application for managing student rec
 ## System Features
 - Core Java Object-Oriented Architecture (Encapsulation, Inheritance, Polymorphism, Abstraction)
 - Flexible Data Persistence (File-based Storage & In-Memory Repositories)
-- Student Registration, Name Search, GPA Range Filtering, and Deletion
+- Student Status (Active, Suspended, Graduated, Dropped Out) & Semester Management
+- Teacher Management & Course Assignments (`TeacherService`, `TeacherRepository`)
 - Advanced Grade & GPA 4.0 Calculation Engine with Honors Distinction
 - Batch Attendance Tracking & Low-Attendance Alerts
 - Data Export Support (CSV & JSON Formats)
+- System Data Backup Utility (`BackupUtil`)
+- Formatted ASCII Table Output Rendering (`TablePrinter`)
 - Integrated File Logging (`student_mgt.log`)
-- Unit Test Suites (`StudentServiceTest`, `ValidationUtilTest`, `StudentServiceSearchTest`)
+- Unit Test Suites (`StudentServiceTest`, `ValidationUtilTest`, `StudentServiceSearchTest`, `StudentStatusTest`, `TeacherServiceTest`, `TablePrinterTest`)
 - Interactive Console UI
 
 ## Prerequisites
