@@ -48,7 +48,8 @@ public class ConsoleUI {
                 case "8": searchStudents(); break;
                 case "9": viewTopPerformers(); break;
                 case "10": manageTeachers(); break;
-                case "11": deleteStudent(); break;
+                case "11": createBackup(); break;
+                case "12": deleteStudent(); break;
                 case "0":
                     running = false;
                     System.out.println("Exiting application. Goodbye!");
@@ -71,7 +72,8 @@ public class ConsoleUI {
         System.out.println("8. Search Students by Name");
         System.out.println("9. View Top Performers");
         System.out.println("10. Teacher Management Menu");
-        System.out.println("11. Delete Student");
+        System.out.println("11. Create System Data Backup");
+        System.out.println("12. Delete Student");
         System.out.println("0. Exit");
     }
 
@@ -191,6 +193,15 @@ public class ConsoleUI {
             List<com.student.mgt.model.Teacher> teachers = teacherService.getAllTeachers();
             if (teachers.isEmpty()) System.out.println("No teachers registered.");
             else teachers.forEach(System.out::println);
+        }
+    }
+
+    private void createBackup() {
+        try {
+            String backupName = BackupUtil.createDataBackup(com.student.mgt.config.AppConfig.DATA_FILE_PATH);
+            System.out.println("Backup successfully created: " + backupName);
+        } catch (Exception e) {
+            System.out.println("Backup failed: " + e.getMessage());
         }
     }
 
