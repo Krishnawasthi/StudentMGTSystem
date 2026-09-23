@@ -16,6 +16,7 @@ public class Student implements Serializable {
     private Course course;
     private List<Double> marks;
     private double attendancePercentage;
+    private StudentStatus status;
 
     public Student(String studentId, String rollNo, String name, String email, Course course) {
         this.studentId = studentId;
@@ -25,7 +26,11 @@ public class Student implements Serializable {
         this.course = course;
         this.marks = new ArrayList<>();
         this.attendancePercentage = 100.0;
+        this.status = StudentStatus.ACTIVE;
     }
+
+    public StudentStatus getStatus() { return status != null ? status : StudentStatus.ACTIVE; }
+    public void setStatus(StudentStatus status) { this.status = status; }
 
     public String getStudentId() { return studentId; }
     public void setStudentId(String studentId) { this.studentId = studentId; }
