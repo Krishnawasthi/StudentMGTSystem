@@ -99,6 +99,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void updateStudentSemester(String id, com.student.mgt.model.Semester semester) throws StudentNotFoundException {
+        Student student = getStudentById(id);
+        student.setSemester(semester);
+        repository.update(student);
+    }
+
+    @Override
+    public List<Student> getStudentsBySemester(com.student.mgt.model.Semester semester) {
+        return repository.findAll().stream()
+                .filter(s -> s.getSemester() == semester)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void addMarks(String studentId, double marks) throws StudentNotFoundException {
         ValidationUtil.validateMarks(marks);
         Student student = getStudentById(studentId);

@@ -18,6 +18,8 @@ public interface StudentService {
     List<Student> getTopPerformers(int limit);
     void updateStudentStatus(String id, com.student.mgt.model.StudentStatus status) throws StudentNotFoundException;
     List<Student> getStudentsByStatus(com.student.mgt.model.StudentStatus status);
+    void updateStudentSemester(String id, com.student.mgt.model.Semester semester) throws StudentNotFoundException;
+    List<Student> getStudentsBySemester(com.student.mgt.model.Semester semester);
     void addMarks(String studentId, double marks) throws StudentNotFoundException;
     void deleteStudent(String id) throws StudentNotFoundException;
 }
