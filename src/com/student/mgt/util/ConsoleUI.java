@@ -9,17 +9,25 @@ import com.student.mgt.service.StudentService;
 import java.util.List;
 import java.util.Scanner;
 
+import com.student.mgt.service.TeacherService;
+
 public class ConsoleUI {
     private final StudentService studentService;
     private final AttendanceService attendanceService;
     private final ReportService reportService;
+    private final TeacherService teacherService;
     private final Scanner scanner;
 
-    public ConsoleUI(StudentService studentService, AttendanceService attendanceService, ReportService reportService) {
+    public ConsoleUI(StudentService studentService, AttendanceService attendanceService, ReportService reportService, TeacherService teacherService) {
         this.studentService = studentService;
         this.attendanceService = attendanceService;
         this.reportService = reportService;
+        this.teacherService = teacherService;
         this.scanner = new Scanner(System.in);
+    }
+
+    public ConsoleUI(StudentService studentService, AttendanceService attendanceService, ReportService reportService) {
+        this(studentService, attendanceService, reportService, null);
     }
 
     public void start() {
@@ -39,7 +47,8 @@ public class ConsoleUI {
                 case "7": exportJson(); break;
                 case "8": searchStudents(); break;
                 case "9": viewTopPerformers(); break;
-                case "10": deleteStudent(); break;
+                case "10": manageTeachers(); break;
+                case "11": deleteStudent(); break;
                 case "0":
                     running = false;
                     System.out.println("Exiting application. Goodbye!");
@@ -53,7 +62,7 @@ public class ConsoleUI {
     private void printMenu() {
         System.out.println("\n--- STUDENT MANAGEMENT SYSTEM ---");
         System.out.println("1. Register Student");
-        System.out.println("2. View All Students");
+        System.out.println("2. View All Students (Table View)");
         System.out.println("3. Add Marks to Student");
         System.out.println("4. Update Attendance");
         System.out.println("5. Print Class Summary Report");
@@ -61,7 +70,8 @@ public class ConsoleUI {
         System.out.println("7. Export Students to JSON");
         System.out.println("8. Search Students by Name");
         System.out.println("9. View Top Performers");
-        System.out.println("10. Delete Student");
+        System.out.println("10. Teacher Management Menu");
+        System.out.println("11. Delete Student");
         System.out.println("0. Exit");
     }
 
@@ -86,11 +96,7 @@ public class ConsoleUI {
 
     private void listStudents() {
         List<Student> students = studentService.getAllStudents();
-        if (students.isEmpty()) {
-            System.out.println("No students registered.");
-            return;
-        }
-        students.forEach(System.out::println);
+        TablePrinter.printStudentTable(students);
     }
 
     private void addMarks() {
@@ -160,6 +166,32 @@ public class ConsoleUI {
         List<Student> top = studentService.getTopPerformers(limit);
         System.out.println("Top Performers:");
         top.forEach(s -> System.out.printf("%s - GPA: %.2f%n", s.getName(), s.getGpa()));
+    }
+
+    private void manageTeachers() {
+        if (teacherService == null) {
+            System.out.println("Teacher service unavailable.");
+            return;
+        }
+        System.out.println("--- Teacher Management ---");
+        System.out.println("1. Register Teacher");
+        System.out.println("2. View All Teachers");
+        System.out.print("Enter option: ");
+        String opt = scanner.nextLine().trim();
+        if ("1".equals(opt)) {
+            System.out.print("Enter Teacher Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter Email: ");
+            String email = scanner.nextLine();
+            System.out.print("Enter Department: ");
+            String dept = scanner.nextLine();
+            com.student.mgt.model.Teacher t = teacherService.registerTeacher(name, email, dept);
+            System.out.println("Registered Teacher: " + t);
+        } else if ("2".equals(opt)) {
+            List<com.student.mgt.model.Teacher> teachers = teacherService.getAllTeachers();
+            if (teachers.isEmpty()) System.out.println("No teachers registered.");
+            else teachers.forEach(System.out::println);
+        }
     }
 
     private void deleteStudent() {
