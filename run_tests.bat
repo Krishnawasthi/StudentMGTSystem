@@ -9,7 +9,13 @@ if %ERRORLEVEL% EQU 0 (
     java -ea -cp bin com.student.mgt.test.ValidationUtilTest
     echo Running StudentServiceSearchTest...
     java -ea -cp bin com.student.mgt.test.StudentServiceSearchTest
-    echo All Test Suites Completed!
+    echo Running StudentStatusTest...
+    java -ea -cp bin com.student.mgt.test.StudentStatusTest
+    echo Running TeacherServiceTest...
+    java -ea -cp bin com.student.mgt.test.TeacherServiceTest
+    echo Running TablePrinterTest...
+    java -ea -cp bin com.student.mgt.test.TablePrinterTest
+    echo All Test Suites Completed Successfully!
 ) else (
     echo Compilation failed!
 )
