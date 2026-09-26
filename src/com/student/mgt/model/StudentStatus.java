@@ -4,7 +4,9 @@ public enum StudentStatus {
     ACTIVE("Active"),
     SUSPENDED("Suspended"),
     GRADUATED("Graduated"),
-    DROPPED("Dropped Out");
+    DROPPED("Dropped Out"),
+    ON_LEAVE("On Leave"),
+    EXPELLED("Expelled");
 
     private final String displayName;
 
