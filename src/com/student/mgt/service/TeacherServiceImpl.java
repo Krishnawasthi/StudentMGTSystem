@@ -53,4 +53,45 @@ public class TeacherServiceImpl implements TeacherService {
             repository.update(teacher);
         }
     }
+
+    @Override
+    public void deleteTeacher(String id) {
+        Teacher teacher = getTeacherById(id);
+        if (teacher == null) {
+            throw new com.student.mgt.exception.TeacherNotFoundException("Teacher not found with ID: " + id);
+        }
+        repository.deleteById(id);
+    }
+
+    @Override
+    public void updateTeacherDetails(String id, String name, String email, String department) {
+        Teacher teacher = getTeacherById(id);
+        if (teacher == null) {
+            throw new com.student.mgt.exception.TeacherNotFoundException("Teacher not found with ID: " + id);
+        }
+        if (name != null && !name.trim().isEmpty()) {
+            ValidationUtil.validateName(name);
+            teacher.setName(name);
+        }
+        if (email != null && !email.trim().isEmpty()) {
+            ValidationUtil.validateEmail(email);
+            teacher.setEmail(email);
+        }
+        if (department != null && !department.trim().isEmpty()) {
+            ValidationUtil.validateDepartment(department);
+            teacher.setDepartment(department);
+        }
+        repository.update(teacher);
+    }
+
+    @Override
+    public List<Teacher> searchByName(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return getAllTeachers();
+        }
+        String term = keyword.trim().toLowerCase();
+        return repository.findAll().stream()
+                .filter(t -> t.getName().toLowerCase().contains(term))
+                .collect(Collectors.toList());
+    }
 }

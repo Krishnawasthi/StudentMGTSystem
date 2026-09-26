@@ -11,4 +11,7 @@ public interface TeacherService {
     List<Teacher> getAllTeachers();
     List<Teacher> getTeachersByDepartment(String department);
     void assignCourseToTeacher(String teacherId, Course course);
+    void deleteTeacher(String id);
+    void updateTeacherDetails(String id, String name, String email, String department);
+    List<Teacher> searchByName(String keyword);
 }
