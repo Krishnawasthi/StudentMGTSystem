@@ -43,4 +43,16 @@ public class ValidationUtil {
             throw new InvalidDataException("Marks must be between 0 and 100.");
         }
     }
+
+    public static void validateDepartment(String department) {
+        if (department == null || department.trim().length() < 2) {
+            throw new InvalidDataException("Department name must contain at least 2 characters.");
+        }
+    }
+
+    public static void validateStudentId(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new InvalidDataException("Student ID cannot be empty.");
+        }
+    }
 }
