@@ -2,6 +2,7 @@ package com.student.mgt.model;
 
 import com.student.mgt.util.GradeCalculatorUtil;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +19,8 @@ public class Student implements Serializable {
     private double attendancePercentage;
     private StudentStatus status;
     private Semester semester;
+    private LocalDate dateOfBirth;
+    private LocalDate enrollmentDate;
 
     public Student(String studentId, String rollNo, String name, String email, Course course) {
         this.studentId = studentId;
@@ -29,6 +32,7 @@ public class Student implements Serializable {
         this.attendancePercentage = 100.0;
         this.status = StudentStatus.ACTIVE;
         this.semester = Semester.SEMESTER_1;
+        this.enrollmentDate = LocalDate.now();
     }
 
     public StudentStatus getStatus() { return status != null ? status : StudentStatus.ACTIVE; }
@@ -57,6 +61,12 @@ public class Student implements Serializable {
 
     public double getAttendancePercentage() { return attendancePercentage; }
     public void setAttendancePercentage(double attendancePercentage) { this.attendancePercentage = attendancePercentage; }
+
+    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public LocalDate getEnrollmentDate() { return enrollmentDate; }
+    public void setEnrollmentDate(LocalDate enrollmentDate) { this.enrollmentDate = enrollmentDate; }
 
     public double getAverageMarks() {
         if (marks == null || marks.isEmpty()) return 0.0;

@@ -11,6 +11,7 @@ public class Teacher implements Serializable {
     private String teacherId;
     private String name;
     private String email;
+    private String phone;
     private String department;
     private List<Course> assignedCourses;
 
@@ -18,6 +19,7 @@ public class Teacher implements Serializable {
         this.teacherId = teacherId;
         this.name = name;
         this.email = email;
+        this.phone = "";
         this.department = department;
         this.assignedCourses = new ArrayList<>();
     }
@@ -30,6 +32,9 @@ public class Teacher implements Serializable {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public String getDepartment() { return department; }
     public void setDepartment(String department) { this.department = department; }
