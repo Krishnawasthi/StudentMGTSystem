@@ -23,6 +23,10 @@ public class AppLogger {
         log("ERROR", message);
     }
 
+    public static void debug(String message) {
+        log("DEBUG", message);
+    }
+
     private static synchronized void log(String level, String message) {
         String timestamp = LocalDateTime.now().format(FORMATTER);
         String logEntry = String.format("[%s] [%s] %s", timestamp, level, message);
