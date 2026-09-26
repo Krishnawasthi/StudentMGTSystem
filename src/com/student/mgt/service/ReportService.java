@@ -51,4 +51,26 @@ public class ReportService {
         return repository.findAll().stream()
                 .max(java.util.Comparator.comparingDouble(Student::getAverageMarks));
     }
+
+    public java.util.Optional<Student> getLowestScorer() {
+        return repository.findAll().stream()
+                .filter(s -> !s.getMarks().isEmpty())
+                .min(java.util.Comparator.comparingDouble(Student::getAverageMarks));
+    }
+
+    public java.util.Map<com.student.mgt.model.StudentStatus, Long> getStudentCountByStatus() {
+        return repository.findAll().stream()
+                .collect(java.util.stream.Collectors.groupingBy(
+                        Student::getStatus,
+                        java.util.stream.Collectors.counting()));
+    }
+
+    public double getClassAverageGpa() {
+        List<Student> students = repository.findAll();
+        if (students.isEmpty()) return 0.0;
+        return students.stream()
+                .mapToDouble(Student::getGpa)
+                .average()
+                .orElse(0.0);
+    }
 }
