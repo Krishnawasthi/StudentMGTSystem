@@ -20,10 +20,10 @@ public class EnrollmentServiceTest {
     private static void testEnrollmentFlow() {
         EnrollmentService service = new EnrollmentServiceImpl(new InMemoryEnrollmentRepository());
         try {
-            CourseEnrollment enrollment = service.enrollStudent(101, Course.JAVA, Semester.SEMESTER_1);
+            CourseEnrollment enrollment = service.enrollStudent(101, Course.COMPUTER_SCIENCE, Semester.SEMESTER_1);
             assert enrollment != null;
             assert enrollment.getStudentId() == 101;
-            assert enrollment.getCourse() == Course.JAVA;
+            assert enrollment.getCourse() == Course.COMPUTER_SCIENCE;
             assert enrollment.getStatus() == EnrollmentStatus.REGISTERED;
 
             CourseEnrollment updated = service.updateStatus(enrollment.getEnrollmentId(), EnrollmentStatus.ENROLLED);
@@ -36,10 +36,10 @@ public class EnrollmentServiceTest {
     private static void testDuplicateEnrollmentPrevented() {
         EnrollmentService service = new EnrollmentServiceImpl(new InMemoryEnrollmentRepository());
         try {
-            service.enrollStudent(102, Course.PYTHON, Semester.SEMESTER_2);
+            service.enrollStudent(102, Course.INFORMATION_TECHNOLOGY, Semester.SEMESTER_2);
             boolean threw = false;
             try {
-                service.enrollStudent(102, Course.PYTHON, Semester.SEMESTER_2);
+                service.enrollStudent(102, Course.INFORMATION_TECHNOLOGY, Semester.SEMESTER_2);
             } catch (EnrollmentException e) {
                 threw = true;
             }
@@ -52,7 +52,7 @@ public class EnrollmentServiceTest {
     private static void testScoreUpdate() {
         EnrollmentService service = new EnrollmentServiceImpl(new InMemoryEnrollmentRepository());
         try {
-            CourseEnrollment enr = service.enrollStudent(103, Course.DATABASE, Semester.SEMESTER_3);
+            CourseEnrollment enr = service.enrollStudent(103, Course.ELECTRICAL_ENGINEERING, Semester.SEMESTER_3);
             service.updateScore(enr.getEnrollmentId(), 92.5);
             CourseEnrollment retrieved = service.getEnrollmentsByStudent(103).get(0);
             assert retrieved.getScore() == 92.5;

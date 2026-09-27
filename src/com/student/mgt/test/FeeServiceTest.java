@@ -13,21 +13,21 @@ public class FeeServiceTest {
 
     private static void testBaseFees() {
         FeeService service = new FeeServiceImpl();
-        assert service.getBaseFeePerCourse(Course.JAVA) == 1200.0;
-        assert service.getBaseFeePerCourse(Course.AI_ML) == 1600.0;
+        assert service.getBaseFeePerCourse(Course.COMPUTER_SCIENCE) == 1500.0;
+        assert service.getBaseFeePerCourse(Course.INFORMATION_TECHNOLOGY) == 1400.0;
     }
 
     private static void testMeritDiscounts() {
         FeeService service = new FeeServiceImpl();
-        double baseFee = service.getBaseFeePerCourse(Course.JAVA); // 1200.0
+        double baseFee = service.getBaseFeePerCourse(Course.COMPUTER_SCIENCE); // 1500.0
         
-        double highGpaTuition = service.calculateTuition(Course.JAVA, 3.9);
-        assert highGpaTuition == baseFee * 0.75; // 900.0
+        double highGpaTuition = service.calculateTuition(Course.COMPUTER_SCIENCE, 3.9);
+        assert highGpaTuition == baseFee * 0.75; // 1125.0
 
-        double midGpaTuition = service.calculateTuition(Course.JAVA, 3.6);
+        double midGpaTuition = service.calculateTuition(Course.COMPUTER_SCIENCE, 3.6);
         assert midGpaTuition == baseFee * 0.85;
 
-        double lowGpaTuition = service.calculateTuition(Course.JAVA, 2.5);
+        double lowGpaTuition = service.calculateTuition(Course.COMPUTER_SCIENCE, 2.5);
         assert lowGpaTuition == baseFee;
     }
 }

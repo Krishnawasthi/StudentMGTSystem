@@ -11,14 +11,13 @@ public class FeeServiceImpl implements FeeService {
     public double getBaseFeePerCourse(Course course) {
         if (course == null) return 1000.0;
         switch (course) {
-            case JAVA: return 1200.0;
-            case PYTHON: return 1100.0;
-            case DATABASE: return 1000.0;
-            case WEB_DEV: return 1150.0;
-            case DATA_SCIENCE: return 1500.0;
-            case CYBER_SECURITY: return 1400.0;
-            case AI_ML: return 1600.0;
-            case CLOUD_COMPUTING: return 1350.0;
+            case COMPUTER_SCIENCE: return 1500.0;
+            case INFORMATION_TECHNOLOGY: return 1400.0;
+            case ELECTRICAL_ENGINEERING: return 1300.0;
+            case MECHANICAL_ENGINEERING: return 1250.0;
+            case CIVIL_ENGINEERING: return 1200.0;
+            case ELECTRONICS_ENGINEERING: return 1350.0;
+            case CHEMICAL_ENGINEERING: return 1250.0;
             default: return 1000.0;
         }
     }
